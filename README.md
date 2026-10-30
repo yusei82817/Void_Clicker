@@ -1,1 +1,2 @@
-# Void_Clicker
+# Void Clicker
+Play:Click only!
