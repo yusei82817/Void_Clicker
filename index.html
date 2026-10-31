@@ -66,6 +66,7 @@ button:active{transform:scale(.97)}
  function refreshActive(){activeEl.textContent=activePointers.size+' / '+MAX_FINGERS}
  function begin(){score=0;scoreEl.textContent='0';activePointers.clear();refreshActive();playing=true;title.textContent='READY?';desc.innerHTML='時間制限なし。好きなだけコアを叩け。';start.textContent='START';overlay.classList.add('hidden')}
  start.addEventListener('click',begin);
+ document.addEventListener('contextmenu',e=>e.preventDefault());
  arena.addEventListener('pointerdown',e=>{
   if(!playing||e.target===start)return;
   if(activePointers.has(e.pointerId))return;
