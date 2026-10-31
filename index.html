@@ -30,6 +30,11 @@ h1{font-size:clamp(34px,8vw,62px);letter-spacing:.08em;margin:8px 0 4px;text-sha
 #overlay p{margin:0;color:#b9c6e2;font-size:14px;line-height:1.7}
 button{border:0;border-radius:999px;padding:14px 30px;background:linear-gradient(100deg,var(--cyan),#9e9aff);color:#081322;font-weight:900;font-size:16px;letter-spacing:.08em;cursor:pointer;box-shadow:0 5px 24px #62f3ed44}
 button:active{transform:scale(.97)}
+#fullscreen{margin:0 0 16px;padding:10px 20px;background:#202b46;border:1px solid #52658d;color:#dce8ff;box-shadow:none;font-size:13px}
+#fullscreen:active{transform:scale(.97)}
+body:fullscreen{padding:12px}
+body:fullscreen main{width:min(100%,1100px)}
+body:fullscreen #arena{height:min(68svh,720px);min-height:220px;aspect-ratio:auto}
 .footer{display:flex;justify-content:space-between;gap:12px;margin-top:13px;color:var(--muted);font-size:12px}
 #active{color:var(--cyan)}
 @media(max-width:420px){body{padding:14px}.stat{padding:10px 4px}.footer{font-size:11px}}
@@ -40,6 +45,7 @@ button:active{transform:scale(.97)}
  <div class="brand">YUSEI82817 PROJECT</div>
  <h1>VOID CLICKER</h1>
  <p class="subtitle">NO UPGRADES. NO MERCY. JUST YOUR FINGERS.</p>
+ <button id="fullscreen" type="button" aria-label="最大画面表示">⛶ MAX SCREEN</button>
  <section class="stats" aria-label="ゲーム状況">
   <div class="stat"><small>SCORE</small><strong id="score">0</strong></div>
   <div class="stat"><small>MODE</small><strong id="mode">FREE</strong></div>
@@ -58,6 +64,7 @@ button:active{transform:scale(.97)}
 </main>
 <script>
 (()=>{
+ const fullscreenBtn=document.getElementById('fullscreen');
  const arena=document.getElementById('arena'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),activeEl=document.getElementById('active'),overlay=document.getElementById('overlay'),title=document.getElementById('overlayTitle'),desc=document.getElementById('overlayText'),start=document.getElementById('start'),target=document.getElementById('target');
  let score=0,best=0,playing=false;
  const activePointers=new Set(),MAX_FINGERS=8;
@@ -66,6 +73,15 @@ button:active{transform:scale(.97)}
  function refreshActive(){activeEl.textContent=activePointers.size+' / '+MAX_FINGERS}
  function begin(){score=0;scoreEl.textContent='0';activePointers.clear();refreshActive();playing=true;title.textContent='READY?';desc.innerHTML='時間制限なし。好きなだけコアを叩け。';start.textContent='START';overlay.classList.add('hidden')}
  start.addEventListener('click',begin);
+ fullscreenBtn.addEventListener('click',async()=>{
+  try{
+   if(!document.fullscreenElement){await document.documentElement.requestFullscreen()}
+   else{await document.exitFullscreen()}
+  }catch(error){fullscreenBtn.textContent='FULLSCREEN UNAVAILABLE'}
+ });
+ document.addEventListener('fullscreenchange',()=>{
+  fullscreenBtn.textContent=document.fullscreenElement?'⤢ EXIT FULLSCREEN':'⛶ MAX SCREEN';
+ });
  document.addEventListener('contextmenu',e=>e.preventDefault());
  arena.addEventListener('pointerdown',e=>{
   if(!playing||e.target===start)return;
