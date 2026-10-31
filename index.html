@@ -9,93 +9,131 @@
 :root{color-scheme:dark;--bg:#090b16;--panel:#12182a;--line:#273452;--cyan:#62f3ed;--violet:#9a83ff;--muted:#9aa8c4}
 *{box-sizing:border-box}
 body{margin:0;min-height:100svh;background:radial-gradient(ellipse at 50% 25%,#1c2850 0,#0d1224 42%,var(--bg) 78%);color:#f3f6ff;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;display:grid;place-items:center;padding:20px;user-select:none;-webkit-user-select:none}
-main{width:min(100%,680px);text-align:center}
-.brand{font-size:clamp(12px,2vw,14px);letter-spacing:.42em;color:var(--cyan);font-weight:800}
-h1{font-size:clamp(34px,8vw,62px);letter-spacing:.08em;margin:8px 0 4px;text-shadow:0 0 28px #62f3ed55}
-.subtitle{color:var(--muted);margin:0 0 26px;font-size:14px}
+main{width:min(100%,1120px);text-align:center}
+.brand{font-size:12px;letter-spacing:.42em;color:var(--cyan);font-weight:800}
+h1{font-size:clamp(34px,6vw,58px);letter-spacing:.08em;margin:8px 0 4px;text-shadow:0 0 28px #62f3ed55}
+.subtitle{color:var(--muted);margin:0 0 18px;font-size:13px}
+#fullscreen{margin:0 0 16px;padding:10px 20px;background:#202b46;border:1px solid #52658d;color:#dce8ff;box-shadow:none;font-size:13px}
+button{border:0;border-radius:999px;padding:12px 20px;background:linear-gradient(100deg,var(--cyan),#9e9aff);color:#081322;font-weight:900;font-size:14px;letter-spacing:.05em;cursor:pointer}
+button:active{transform:scale(.97)}
+button:disabled{opacity:.38;cursor:not-allowed;filter:grayscale(.6)}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.stat{background:#11182bd9;border:1px solid var(--line);border-radius:14px;padding:12px 8px}
-.stat small{display:block;color:var(--muted);font-size:11px;letter-spacing:.12em}
-.stat strong{display:block;font-size:clamp(22px,5vw,30px);font-variant-numeric:tabular-nums;margin-top:3px}
-#score{color:var(--cyan)}#mode{color:#ffcf72}
-#arena{position:relative;display:grid;place-items:center;width:100%;aspect-ratio:1.45;min-height:250px;border:1px solid #3b5079;border-radius:24px;overflow:hidden;background:radial-gradient(ellipse,#263c67 0,#172440 48%,#10182c 100%);box-shadow:inset 0 0 55px #050914aa,0 18px 60px #0006;touch-action:none;cursor:crosshair}
+.stat{background:#11182bd9;border:1px solid var(--line);border-radius:14px;padding:10px 8px}
+.stat small{display:block;color:var(--muted);font-size:10px;letter-spacing:.12em}
+.stat strong{display:block;font-size:clamp(20px,4vw,28px);font-variant-numeric:tabular-nums;margin-top:3px}
+#score{color:var(--cyan)}#power{color:#ffcf72}
+.game-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(270px,1fr);gap:16px;align-items:stretch;text-align:left}
+#arena{position:relative;display:grid;place-items:center;width:100%;min-height:390px;border:1px solid #3b5079;border-radius:24px;overflow:hidden;background:radial-gradient(ellipse,#263c67 0,#172440 48%,#10182c 100%);box-shadow:inset 0 0 55px #050914aa,0 18px 60px #0006;touch-action:none;cursor:crosshair}
 #arena:before,#arena:after{content:"";position:absolute;inset:12px;border:1px solid #9eb5ff18;border-radius:17px;pointer-events:none}
 #arena:after{inset:24px;border-color:#9eb5ff12}
-#target{z-index:1;width:min(46vw,220px);height:min(46vw,220px);max-height:70%;max-width:70%;border-radius:50%;border:2px solid #9cfaf2;background:radial-gradient(circle at 35% 30%,#c5fffa 0,#58e5df 8%,#277a9c 35%,#25326f 66%,#171d45 100%);box-shadow:0 0 22px #62f3ed88,0 0 75px #4d9bff55,inset -12px -18px 35px #080d2caa;transition:transform .07s;pointer-events:none}
+#target{z-index:1;width:min(34vw,220px);height:min(34vw,220px);max-height:60%;max-width:60%;border-radius:50%;border:2px solid #9cfaf2;background:radial-gradient(circle at 35% 30%,#c5fffa 0,#58e5df 8%,#277a9c 35%,#25326f 66%,#171d45 100%);box-shadow:0 0 22px #62f3ed88,0 0 75px #4d9bff55,inset -12px -18px 35px #080d2caa;transition:transform .07s;pointer-events:none}
 #target.hit{transform:scale(.91);filter:brightness(1.6)}
 #hint{position:absolute;z-index:2;bottom:18px;color:#c5d2ee;font-size:12px;letter-spacing:.12em;pointer-events:none}
-#overlay{position:absolute;inset:0;z-index:3;display:grid;place-content:center;gap:12px;background:#080d1bd9;backdrop-filter:blur(5px);padding:20px}
+#overlay{position:absolute;inset:0;z-index:3;display:grid;place-content:center;gap:12px;text-align:center;background:#080d1bd9;backdrop-filter:blur(5px);padding:20px}
 #overlay.hidden{display:none}
 #overlay h2{margin:0;font-size:clamp(22px,5vw,32px)}
 #overlay p{margin:0;color:#b9c6e2;font-size:14px;line-height:1.7}
-button{border:0;border-radius:999px;padding:14px 30px;background:linear-gradient(100deg,var(--cyan),#9e9aff);color:#081322;font-weight:900;font-size:16px;letter-spacing:.08em;cursor:pointer;box-shadow:0 5px 24px #62f3ed44}
-button:active{transform:scale(.97)}
-#fullscreen{margin:0 0 16px;padding:10px 20px;background:#202b46;border:1px solid #52658d;color:#dce8ff;box-shadow:none;font-size:13px}
-#fullscreen:active{transform:scale(.97)}
-body:fullscreen{padding:12px}
-body:fullscreen main{width:min(100%,1100px)}
-body:fullscreen #arena{height:min(68svh,720px);min-height:220px;aspect-ratio:auto}
+#shop{background:#11182beF;border:1px solid var(--line);border-radius:22px;padding:16px;max-height:520px;overflow:auto}
+.shop-head{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-bottom:4px}
+.shop-head h2{font-size:20px;margin:0;letter-spacing:.08em}
+#gold{color:#ffcf72;font-size:13px;font-weight:800}
+.shop-note{color:var(--muted);font-size:11px;margin:5px 0 12px}
+.upgrade{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:11px 0;border-top:1px solid #273452}
+.upgrade-info{min-width:0}
+.upgrade-name{font-size:14px;font-weight:800}
+.upgrade-detail{font-size:11px;color:var(--muted);margin-top:3px}
+.upgrade button{flex:none;padding:9px 12px;font-size:11px;min-width:94px}
+.upgrade button.owned{background:#26334b;color:#9aabc9;box-shadow:none}
 .footer{display:flex;justify-content:space-between;gap:12px;margin-top:13px;color:var(--muted);font-size:12px}
 #active{color:var(--cyan)}
-@media(max-width:420px){body{padding:14px}.stat{padding:10px 4px}.footer{font-size:11px}}
+body:fullscreen{padding:12px}
+body:fullscreen main{width:min(100%,1500px)}
+body:fullscreen .game-layout{grid-template-columns:minmax(0,1.8fr) minmax(300px,1fr)}
+body:fullscreen #arena{min-height:min(65svh,800px)}
+@media(max-width:720px){body{padding:14px}.game-layout{grid-template-columns:1fr}.game-layout #arena{min-height:320px}#shop{max-height:none}.footer{font-size:10px}}
 </style>
 </head>
 <body>
 <main>
  <div class="brand">YUSEI82817 PROJECT</div>
  <h1>VOID CLICKER</h1>
- <p class="subtitle">NO UPGRADES. NO MERCY. JUST YOUR FINGERS.</p>
+ <p class="subtitle">CLICK THE CORE. BUILD YOUR POWER.</p>
  <button id="fullscreen" type="button" aria-label="最大画面表示">⛶ MAX SCREEN</button>
  <section class="stats" aria-label="ゲーム状況">
-  <div class="stat"><small>SCORE</small><strong id="score">0</strong></div>
-  <div class="stat"><small>MODE</small><strong id="mode">FREE</strong></div>
-  <div class="stat"><small>BEST</small><strong id="best">0</strong></div>
+  <div class="stat"><small>SCORE / GOLD</small><strong id="score">0</strong></div>
+  <div class="stat"><small>CLICK POWER</small><strong id="power">1</strong></div>
+  <div class="stat"><small>BEST SCORE</small><strong id="best">0</strong></div>
  </section>
- <section id="arena" aria-label="クリックエリア">
-  <div id="target"></div>
-  <div id="hint">TAP / CLICK THE CORE</div>
-  <div id="overlay">
-   <h2 id="overlayTitle">READY?</h2>
-   <p id="overlayText">時間制限なし。ひたすらコアを叩け。<br>スマホ・タブレットは最大8本の指を同時判定。</p>
-   <button id="start">START</button>
-  </div>
- </section>
- <div class="footer"><span>同時入力上限: <b>8 fingers</b></span><span>ACTIVE: <b id="active">0 / 8</b></span><span>UPGRADES: <b>NONE</b></span></div>
+ <div class="game-layout">
+  <section id="arena" aria-label="クリックエリア">
+   <div id="target"></div>
+   <div id="hint">TAP / CLICK THE CORE</div>
+   <div id="overlay">
+    <h2 id="overlayTitle">READY?</h2>
+    <p id="overlayText">時間制限なし。コアを叩いてスコアを稼ぎ、<br>右のショップでクリック威力を強化しよう。<br>同時入力は最大8本。</p>
+    <button id="start">START</button>
+   </div>
+  </section>
+  <aside id="shop" aria-label="アップグレードショップ">
+   <div class="shop-head"><h2>UPGRADE SHOP</h2><span id="gold">GOLD: 0</span></div>
+   <p class="shop-note">購入するとクリック威力が加算される。価格は強化値より高く設定。</p>
+   <div id="upgradeList"></div>
+  </aside>
+ </div>
+ <div class="footer"><span>同時入力上限: <b>8 fingers</b></span><span>ACTIVE: <b id="active">0 / 8</b></span><span>UPGRADES: <b id="upgradeCount">0</b></span></div>
 </main>
 <script>
 (()=>{
- const fullscreenBtn=document.getElementById('fullscreen');
- const arena=document.getElementById('arena'),scoreEl=document.getElementById('score'),bestEl=document.getElementById('best'),activeEl=document.getElementById('active'),overlay=document.getElementById('overlay'),title=document.getElementById('overlayTitle'),desc=document.getElementById('overlayText'),start=document.getElementById('start'),target=document.getElementById('target');
- let score=0,best=0,playing=false;
+ const $=id=>document.getElementById(id);
+ const fullscreenBtn=$('fullscreen'),arena=$('arena'),scoreEl=$('score'),bestEl=$('best'),powerEl=$('power'),goldEl=$('gold'),activeEl=$('active'),overlay=$('overlay'),start=$('start'),target=$('target'),upgradeList=$('upgradeList'),upgradeCount=$('upgradeCount');
+ const upgrades=[1,5,10,100,1000,10000,100000,1000000,10000000,100000000].map((power,i)=>({power,cost:power*10}));
+ let score=0,best=0,clickPower=1,playing=false,bought=[];
  const activePointers=new Set(),MAX_FINGERS=8;
- try{best=Number(localStorage.getItem('void-clicker-best'))||0}catch{}
- bestEl.textContent=best;
+ try{
+  const save=JSON.parse(localStorage.getItem('void-clicker-save')||'null');
+  if(save){score=Math.max(0,Number(save.score)||0);best=Math.max(score,Number(save.best)||0);clickPower=Math.max(1,Number(save.clickPower)||1);bought=Array.isArray(save.bought)?save.bought.filter(n=>Number.isInteger(n)&&n>=0&&n<upgrades.length):[]}
+  best=Math.max(best,Number(localStorage.getItem('void-clicker-best'))||0);
+ }catch{}
+ function persist(){try{localStorage.setItem('void-clicker-save',JSON.stringify({score,best,clickPower,bought}));localStorage.setItem('void-clicker-best',String(best))}catch{}}
+ function refresh(){
+  scoreEl.textContent=score.toLocaleString();goldEl.textContent='GOLD: '+score.toLocaleString();powerEl.textContent=clickPower.toLocaleString();bestEl.textContent=best.toLocaleString();upgradeCount.textContent=bought.length;
+  renderShop();
+ }
+ function renderShop(){
+  upgradeList.innerHTML='';
+  upgrades.forEach((u,i)=>{
+   const owned=bought.includes(i),canBuy=score>=u.cost&&!owned;
+   const row=document.createElement('div');row.className='upgrade';
+   const info=document.createElement('div');info.className='upgrade-info';
+   const name=document.createElement('div');name.className='upgrade-name';name.textContent='CLICK POWER +'+u.power.toLocaleString();
+   const detail=document.createElement('div');detail.className='upgrade-detail';detail.textContent='価格: '+u.cost.toLocaleString()+' GOLD';
+   info.append(name,detail);
+   const btn=document.createElement('button');btn.textContent=owned?'OWNED':'BUY';btn.disabled=!canBuy; if(owned)btn.className='owned';
+   btn.addEventListener('click',()=>buy(i));
+   row.append(info,btn);upgradeList.append(row);
+  });
+ }
+ function buy(i){
+  const u=upgrades[i];if(!u||bought.includes(i)||score<u.cost)return;
+  score-=u.cost;clickPower+=u.power;bought.push(i);persist();refresh();
+ }
  function refreshActive(){activeEl.textContent=activePointers.size+' / '+MAX_FINGERS}
- function begin(){score=0;scoreEl.textContent='0';activePointers.clear();refreshActive();playing=true;title.textContent='READY?';desc.innerHTML='時間制限なし。好きなだけコアを叩け。';start.textContent='START';overlay.classList.add('hidden')}
+ function begin(){playing=true;activePointers.clear();refreshActive();overlay.classList.add('hidden')}
  start.addEventListener('click',begin);
- fullscreenBtn.addEventListener('click',async()=>{
-  try{
-   if(!document.fullscreenElement){await document.documentElement.requestFullscreen()}
-   else{await document.exitFullscreen()}
-  }catch(error){fullscreenBtn.textContent='FULLSCREEN UNAVAILABLE'}
- });
- document.addEventListener('fullscreenchange',()=>{
-  fullscreenBtn.textContent=document.fullscreenElement?'⤢ EXIT FULLSCREEN':'⛶ MAX SCREEN';
- });
+ fullscreenBtn.addEventListener('click',async()=>{try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen();else await document.exitFullscreen()}catch(error){fullscreenBtn.textContent='FULLSCREEN UNAVAILABLE'}});
+ document.addEventListener('fullscreenchange',()=>{fullscreenBtn.textContent=document.fullscreenElement?'⤢ EXIT FULLSCREEN':'⛶ MAX SCREEN'});
  document.addEventListener('contextmenu',e=>e.preventDefault());
  arena.addEventListener('pointerdown',e=>{
-  if(!playing||e.target===start)return;
-  if(activePointers.has(e.pointerId))return;
-  if(activePointers.size>=MAX_FINGERS)return;
+  if(!playing||e.target===start||activePointers.has(e.pointerId)||activePointers.size>=MAX_FINGERS)return;
   activePointers.add(e.pointerId);refreshActive();
-  score++;scoreEl.textContent=score.toLocaleString();
-  if(score>best){best=score;bestEl.textContent=best;try{localStorage.setItem('void-clicker-best',String(best))}catch{}}
+  score+=clickPower;if(score>best)best=score;persist();refresh();
   target.classList.add('hit');setTimeout(()=>target.classList.remove('hit'),65);
   try{arena.setPointerCapture(e.pointerId)}catch{}
  });
  function release(e){if(activePointers.delete(e.pointerId))refreshActive()}
  arena.addEventListener('pointerup',release);arena.addEventListener('pointercancel',release);arena.addEventListener('lostpointercapture',release);
  window.addEventListener('blur',()=>{activePointers.clear();refreshActive()});
+ refresh();
 })();
 </script>
 </body>
